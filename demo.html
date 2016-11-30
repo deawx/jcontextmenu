@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="jcontextmenu.css" rel="stylesheet" />
+</head>
+<body>
+    <p id="p1">P1 P1 P1 P1 P1</p>
+    <p id="p2">P2 P2 P2 P2 P2 P2</p>
+
+    <p><button id="startP1">启用P1右键菜单</button><button id="stopP1">禁用P1右键菜单</button></p>
+    <p><button id="startP2">启用P2右键菜单</button><button id="stopP2">禁用P2右键菜单</button></p>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="jcontextmenu.js"></script>
+    <script>
+        $(function () {
+            //复杂菜单测试
+            $('#p1').jcontextmenu({
+                menus: [
+                    { type: 'menuitem', id: 'menuitem1', text: '菜单一', handler: function (event) { alert('您点击了“菜单一”！'); } },
+                    {
+                        type: 'menuitem', id: 'menuitem2', text: '菜单二', submenus: [
+                            { type: 'menuitem', id: 'menuitem21', text: '子菜单21', handler: function (event) { alert('您点击了“子菜单21”！'); } },
+                            { type: 'menuitem', id: 'menuitem22', text: '子菜单22', handler: function (event) { alert('您点击了“子菜单22”！'); } }
+                        ]
+                    },
+                    { type: 'separator' },
+                    {
+                        type: 'menuitem', id: 'menuitem3', text: '菜单三', submenus: [
+                            { type: 'menuitem', id: 'menuitem31', text: '子菜单31', handler: function (event) { alert('您点击了“子菜单31”！'); } },
+                            {
+                                type: 'menuitem', id: 'menuitem32', text: '子菜单32', submenus: [
+                                    { type: 'menuitem', id: 'menuitem321', text: '子菜单321', handler: function (event) { alert('您点击了“子菜单321”！'); } },
+                                    { type: 'menuitem', id: 'menuitem322', text: '子菜单322', handler: function (event) { alert('您点击了“子菜单322”！'); } }
+                                ]
+                            }
+                        ]
+                    },
+                    { type: 'separator' },
+                    { type: 'menuitem', id: 'menuitem4', text: '菜单四', handler: function (event) { alert('您点击了“菜单四”！'); } },
+                ]
+            });
+            $('#startP1').click(function () {
+                $('#p1').jcontextmenu('enable');
+            });
+            $('#stopP1').click(function () {
+                $('#p1').jcontextmenu('disable');
+            });
+
+            //基本菜单测试
+            $('#p2').jcontextmenu();
+            $('#startP2').click(function () {
+                $('#p2').jcontextmenu('enable');
+            });
+            $('#stopP2').click(function () {
+                $('#p2').jcontextmenu('disable');
+            });
+        });
+    </script>
+</body>
+</html>
